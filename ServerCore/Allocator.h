@@ -27,9 +27,9 @@ public:
 	static void* Alloc(int32 size);
 	static void  Release(void* ptr);
 };
-/*
+/*----------------------
 	PoolAllocator
-*/
+-------------------------*/
 class PoolAllocator
 {
 	//최소 페이지단위
