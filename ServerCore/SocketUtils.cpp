@@ -54,7 +54,7 @@ bool SocketUtils::SetReuseAddress(SOCKET socket, bool flag)
 
 bool SocketUtils::SetRecvBufferSize(SOCKET socket, int32 size)
 {
-	return SetSockOpt(socket, SOL_SOCKET, SO_RCVBUF, size);
+	return SetSockOpt(socket, SOL_SOCKET, SO_RCVBUF,size);
 }
 
 bool SocketUtils::SetSendBufferSize(SOCKET socket, int32 size)

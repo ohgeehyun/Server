@@ -22,7 +22,7 @@ private:
 	unordered_map<const char*, int32> _nameTold;
 	unordered_map<int32, const char*> _idToName;
 
-	stack<int32>					  _lockStack;
+	
 	//정점들이 어느 정점으로 간지 기록
 	map<int32, set<int32>>			  _lockHistory;
 

@@ -6,6 +6,7 @@
 #include "CoreTLS.h"
 #include "CoreMacro.h"
 #include "Container.h"
+#include "SendBuffer.h"
 
 #include <WinSock2.h>
 #include <mswsock.h>
