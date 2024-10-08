@@ -1,48 +1,38 @@
-﻿#pragma once
-#include"pch.h"
+﻿#include "pch.h"
+#include "ThreadManager.h"
 #include "Service.h"
 #include "Session.h"
-#include "ThreadManager.h"
-
+#include "BufferReader.h"
+#include "ClientPacketHandler.h"
 
 char sendData[] = "Hello World";
 
-class ServerSession : public Session
+class ServerSession : public PacketSession
 {
 public:
+	~ServerSession()
+	{
+		cout << "~ServerSession" << endl;
+	}
+
 	virtual void OnConnected() override
 	{
-		cout << "Connected To Server" << endl;
-
-		SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
-		::memcpy(sendBuffer->Buffer(), sendData, sizeof(sendData));
-		sendBuffer->Close(sizeof(sendData));
-
-		Send(sendBuffer);
+		//cout << "Connected To Server" << endl;
 	}
 
-	virtual int32 OnRecv(BYTE* buffer, int32 len) override
+	virtual void OnRecvPacket(BYTE* buffer, int32 len) override
 	{
-		//Echo
-		cout << "Content Recv Len = " << len << endl;
-
-		this_thread::sleep_for(1s);
-
-		SendBufferRef sendBuffer = GSendBufferManager->Open(4096);
-		::memcpy(sendBuffer->Buffer(), sendData, sizeof(sendData));
-		sendBuffer->Close(sizeof(sendData));
-
-		Send(sendBuffer);
-
-		return len;
+		ClientPacketHandler::HandlePacket(buffer, len);
 	}
+
 	virtual void OnSend(int32 len) override
 	{
-		cout << "Content Send Len = " << len << endl;
+		//cout << "OnSend Len = " << len << endl;
 	}
+
 	virtual void OnDisConnected() override
 	{
-		cout << "Disconnected" << endl;
+		//cout << "Disconnected" << endl;
 	}
 };
 
@@ -53,8 +43,9 @@ int main()
 	ClientServiceRef service = Make_shared<ClientService>(
 		NetAddress(L"127.0.0.1", 5252),
 		Make_shared<IocpCore>(),
-		Make_shared<ServerSession>,//TODO : SessionManager 등등
-		5);
+		Make_shared<ServerSession>, // TODO : SessionManager 등
+		1);
+
 	ASSERT_CRASH(service->Start());
 
 	for (int32 i = 0; i < 2; i++)
@@ -66,10 +57,7 @@ int main()
 				service->GetIocpCore()->Dispatch();
 			}
 		});
-
-
 	}
-	GThreadManager->Join();
-	cout << "Server Connected!" << endl;
 
+	GThreadManager->Join();
 }

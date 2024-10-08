@@ -20,5 +20,6 @@
 #include "Lock.h"
 #include "ObjectPool.h"
 #include "Memory.h"
+#include "Session.h"
 
 using namespace std;
