@@ -20,15 +20,22 @@ Session::~Session()
 
 void Session::Send(SendBufferRef sendBuffer)
 {
-	//현재 RegisterSend가 걸리지 않은 상태라면 , 걸어준다.
-	WRITE_LOCK;
+	if (IsConnected() == false)
+		return;
 
-	_sendQueue.push(sendBuffer);
+	bool registerSend = false;
 
+	{
+		//현재 RegisterSend가 걸리지 않은 상태라면 , 걸어준다.
+		WRITE_LOCK;
 
-	if (_sendRegistered.exchange(true) == false)
+		_sendQueue.push(sendBuffer);
+
+		if (_sendRegistered.exchange(true) == false)
+			registerSend = true;
+	}
+	if(registerSend)
 		RegisterSend();
-
 }
 
 bool Session::Connect()
