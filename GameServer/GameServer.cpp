@@ -7,8 +7,10 @@
 #include "GameSessionManager.h"
 #include "ServerPacketHandler.h"
 #include "Protocol.pb.h"
+
 int main()
 {
+	ServerPacketHandler::Init();
 	 GSessionManager = new GameSessionManager();
 
 	ServerServiceRef service = Make_shared<ServerService>(

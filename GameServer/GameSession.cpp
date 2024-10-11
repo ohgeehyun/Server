@@ -19,7 +19,11 @@ void GameSession::OnRecvPacket(BYTE* buffer, int32 len)
 {
 	//Echo
 	//cout << "Content Recv Len = " << len << endl;
-	ServerPacketHandler::HandlePacket(buffer, len);
+	PacketSessionRef session = PacketSessionRef();
+	PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
+
+	//TODO : packetId 대역 체크
+	ServerPacketHandler::HandlePacket(session,buffer, len);
 }
 
 void GameSession::OnSend(int32 len)
