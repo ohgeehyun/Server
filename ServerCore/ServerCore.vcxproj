@@ -71,25 +71,25 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)Libraries\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)Libraries\Libs\ServerCore\$(Configuration)\</OutDir>
     <LibraryPath>$(SolutionDir)Libraries\;$(LibraryPath)</LibraryPath>
     <IncludePath>$(SolutionDir)ServerCore\;$(IncludePath)</IncludePath>
     <ReferencePath>$(SolutionDir)Libraries\;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)Libraries\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)Libraries\Libs\ServerCore\$(Configuration)\</OutDir>
     <LibraryPath>$(SolutionDir)Libraries\;$(LibraryPath)</LibraryPath>
     <IncludePath>$(SolutionDir)ServerCore\;$(IncludePath)</IncludePath>
     <ReferencePath>$(SolutionDir)Libraries\;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)Libraries\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)Libraries\Libs\ServerCore\$(Configuration)\</OutDir>
     <LibraryPath>$(SolutionDir)Libraries\;$(LibraryPath)</LibraryPath>
     <IncludePath>$(SolutionDir)ServerCore\;$(IncludePath)</IncludePath>
     <ReferencePath>$(SolutionDir)Libraries\;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)Libraries\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)Libraries\Libs\ServerCore\$(Configuration)\</OutDir>
     <LibraryPath>$(SolutionDir)Libraries\;$(LibraryPath)</LibraryPath>
     <IncludePath>$(SolutionDir)ServerCore\;$(IncludePath)</IncludePath>
     <ReferencePath>$(SolutionDir)Libraries\;$(ReferencePath)</ReferencePath>

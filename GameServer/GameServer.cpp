@@ -5,12 +5,12 @@
 #include "GameSession.h"
 #include "CoreGlobal.h"
 #include "GameSessionManager.h"
-#include "ServerPacketHandler.h"
+#include "ClientPacketHandler.h"
 #include "Protocol.pb.h"
 
 int main()
 {
-	ServerPacketHandler::Init();
+	ClientPacketHandler::Init();
 	 GSessionManager = new GameSessionManager();
 
 	ServerServiceRef service = Make_shared<ServerService>(
@@ -51,7 +51,7 @@ int main()
 			data->add_victims(3000);
 		}
 
-		SendBufferRef sendBuffer = ServerPacketHandler::MakeSendBuffer(pkt);
+		SendBufferRef sendBuffer = ClientPacketHandler::MakeSendBuffer(pkt);
 	
 		GSessionManager->Broadcast(sendBuffer);
 
