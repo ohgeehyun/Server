@@ -81,8 +81,6 @@ void Session::Dispatch(IocpEvent* iocpEvent, int32 numOfByte)
 	default:
 		break;
 	}
-
-
 }
 
 bool Session::RegisterConnect()

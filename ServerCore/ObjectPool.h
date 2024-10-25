@@ -26,7 +26,7 @@ public:
 		StompAllocator::Release(MemoryHeader::DetachHeader(obj));
 #else
 		s_pool.Push(MemoryHeader::DetacchHeader(obj));
-#endif
+#endif`
 	}
 	
 	template<typename... Args>

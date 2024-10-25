@@ -39,7 +39,7 @@ Type* xnew(Args&&...args)
 {
 	Type* memory = static_cast<Type*>(PoolAllocator::Alloc(sizeof(Type)));
 	//여기까지만 한다면 메모리는 할당해주지만 class의경우 생성자와 소멸자가있는데 그것을 자동으로 호출해주진않는다.
-	//placement new 라는 것이 메모리를 할당하고 생성자를 호출하여준다.
+	//placement new 로 메모리를 할당하고 생성자를 호출하여준다.
 	//메모리는 할당되어있으니 생성자를 호출해달라고 하는 것
 	//인자가 있는 경우의 생성자도 있을 것이다.c++11이전에는 인자의 타입마다 하나하나 선언했었다고한다.(노가다)
 	new(memory)Type(forward<Args>(args)...);
